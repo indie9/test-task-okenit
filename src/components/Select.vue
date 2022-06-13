@@ -110,7 +110,7 @@ export default {
       selectedInput: this.selectedInputItem || {},
       isActive: false,
       text: "",
-      searchList: [],
+      searchList: this.list,
     };
   },
   model: {
@@ -147,11 +147,7 @@ export default {
       this.hide();
     },
     text() {
-      for (const prop of Object.keys(this.searchList)) {
-        delete this.searchList[prop];
-      }
       let re = new RegExp(`^${this.text}`, "i");
-
       this.searchList = [
         ...this.list.filter(
           (item) => item.name.match(re) || item.ticker.match(re)
