@@ -11,7 +11,8 @@
         <input
           v-show="isActive"
           type="text"
-          v-model="text"
+          v-bind:value="text"
+          @input="changeInp"
           class="w-full bg-[#F6F7F8] text-base pl-2 flex items-center border-none outline-none"
           ref="leftInput"
           placeholder="Search"
@@ -165,6 +166,9 @@ export default {
     },
     hide() {
       this.isActive = false;
+    },
+    changeInp(e) {
+      this.text = e.target.value;
     },
   },
 };
