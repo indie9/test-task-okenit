@@ -2,6 +2,7 @@
   <div
     class="min-h-max h-12 w-full bg-[#F6F7F8] text-base flex flex-col items-center border-[1px] border-[#E3EBEF] border-solid rounded-md box-content"
     :class="{ 'rounded-none rounded-t-md': isActive }"
+    v-click-outside="hide"
   >
     <div
       class="h-12 w-full bg-[#F6F7F8] text-base rounded-md flex items-center"
@@ -21,7 +22,7 @@
         <div
           v-show="!isActive"
           @click="show"
-          class="w-56 h-12 pl-4 pr-1 flex items-center border-l-2 border-slate-200 border-solid cursor-pointer box-content"
+          class="w-52 h-12 pl-4 pr-4 flex items-center border-l-2 border-slate-200 border-solid cursor-pointer box-content"
         >
           <img :src="selectedInput.image" alt="" height="24" width="24" />
           <span class="ml-2 text-black font-medium">
@@ -29,7 +30,7 @@
           </span>
         </div>
         <div
-          class="min-w-[2rem] h-12 flex justify-center items-center cursor-pointer"
+          class="w-[2rem] h-12 flex justify-center items-center cursor-pointer"
           @click="hide"
           v-if="isActive"
         >
@@ -47,7 +48,7 @@
           </svg>
         </div>
         <div
-          class="min-w-[2rem] h-12 flex justify-center items-center cursor-pointer"
+          class="w-[2rem] h-12 flex justify-center items-center cursor-pointer"
           @click="show"
           v-else
         >
@@ -84,7 +85,7 @@
         <label
           :for="`${item.name}${index}${$attrs.name}`"
           @click="hide"
-          class="w-full h-12 flex flex-row flex-nowrap items-center bg-[#F6F7F8] hover:bg-slate-200"
+          class="w-full h-12 flex flex-row flex-nowrap items-center bg-[#F6F7F8] hover:bg-slate-200 cursor-pointer"
         >
           <span class="ml-5">
             <!-- <object type="image/svg+xml" :data="item.image" class="w3 h3">
