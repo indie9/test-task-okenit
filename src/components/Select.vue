@@ -68,12 +68,12 @@
       </div>
     </div>
     <div
-      class="z-10 w-full bg-[#F6F7F8] text-base border-[1px] border-[#E3EBEF] border-solid rounded-b-md box-content flex flex-col absolute top-12 overflow-hidden"
+      class="z-10 w-full bg-[#F6F7F8] text-base border-[1px] border-[#E3EBEF] border-solid rounded-b-md box-content flex flex-col absolute top-12 overflow-y-auto max-h-60"
       v-show="isActive"
     >
       <div
         class="flex flex-row h-12 bg-[#F6F7F8]"
-        v-for="(item, index) in searchList.slice(0, 5)"
+        v-for="(item, index) in searchList"
         :key="`${item.name}${index}${$attrs.name}`"
       >
         <input
@@ -97,7 +97,9 @@
           <span class="ml-5 text-base w-28">{{
             item.ticker.toUpperCase()
           }}</span>
-          <span class="mx-2 text-[#80A2B6]">{{ item.name }}</span>
+          <span class="mx-2 text-[#80A2B6] whitespace-nowrap overflow-hidden">{{
+            item.name
+          }}</span>
         </label>
       </div>
     </div>
