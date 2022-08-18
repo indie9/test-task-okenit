@@ -1,39 +1,34 @@
 const axios = require("axios").default;
 const inst = axios.create({
-  baseURL: "https://api.changenow.io/v1",
+  baseURL: "https://jsonplaceholder.typicode.com/",
 });
 
-export function getCoins() {
-  return inst
-    .get("/currencies")
-    .then((res) => {
-      //console.log(res.data);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export function getPosts(userId) {
+  if (userId) {
+    return inst
+      .get(`posts?userId=${userId}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    return inst
+      .get(`posts`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
-export function getMinimal(first, second) {
+
+export function getUsers() {
   return inst
-    .get(
-      `/min-amount/${first}_${second}?api_key=c9155859d90d239f909d2906233816b26cd8cf5ede44702d422667672b58b0cd&useRateId=true`
-    )
+    .get("users")
     .then((res) => {
-      //console.log(res.data);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-export function getCourse(amount, first, second) {
-  return inst
-    .get(
-      `/exchange-amount/${amount}/${first}_${second}?api_key=c9155859d90d239f909d2906233816b26cd8cf5ede44702d422667672b58b0cd&useRateId=true`
-    )
-    .then((res) => {
-      //console.log(res.data);
       return res.data;
     })
     .catch((err) => {
@@ -41,7 +36,24 @@ export function getCourse(amount, first, second) {
     });
 }
 
-// export default {
-//   getCoins: getCoins(),
-//   getMinimal: getMinimal(),
-// };
+export function getComment(postId) {
+  return inst
+    .get(`comments?postId=${postId}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function postComment(dto) {
+  return inst
+    .post(`comments`, dto)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
