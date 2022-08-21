@@ -25,15 +25,27 @@ export function getPosts(userId) {
   }
 }
 
-export function getUsers() {
-  return inst
-    .get("users")
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export function getUsers(id) {
+  console.log(id);
+  if (id) {
+    return inst
+      .get(`users/${id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    return inst
+      .get("users")
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export function getComment(postId) {
